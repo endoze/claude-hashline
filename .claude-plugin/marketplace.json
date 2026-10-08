@@ -1,0 +1,14 @@
+{
+  "name": "claude-hashline",
+  "owner": { "name": "endoze" },
+  "metadata": {
+    "description": "The hashline mod for Claude Code: hash-anchored file editing"
+  },
+  "plugins": [
+    {
+      "name": "hashline",
+      "source": "./",
+      "description": "Hash-anchored read/replace/insert tools that replace line-number and fuzzy-string editing"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+name: Commit Message Check
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  pull-requests: read
+
+jobs:
+  check-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate PR title is a conventional commit
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          set -o errexit -o nounset -o pipefail
+
+          pattern='^(fix|feat|chore|docs|refactor|test|build|ci|perf|style|revert)(\([^)]+\))?!?: .+'
+
+          if [[ ! "${PR_TITLE}" =~ ${pattern} ]]; then
+            echo "::error::PR title does not match conventional commit format."
+            echo "::error::Got: '${PR_TITLE}'"
+            echo "::error::Expected: '<type>(<scope>)?: <description>'"
+            echo "::error::Allowed types: fix, feat, chore, docs, refactor, test, build, ci, perf, style, revert"
+            echo "::error::Examples: 'feat(read): page by bytes', 'fix: keep CRLF on insert'"
+            exit 1
+          fi
+
+          echo "PR title is a valid conventional commit: ${PR_TITLE}"

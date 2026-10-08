@@ -1,0 +1,19 @@
+{
+  "name": "hashline",
+  "version": "0.1.0",
+  "description": "Hash-anchored read/replace/insert tools that replace line-number and fuzzy-string editing",
+  "author": { "name": "Endoze", "url": "https://github.com/endoze" },
+  "homepage": "https://github.com/endoze/claude-hashline",
+  "repository": "https://github.com/endoze/claude-hashline",
+  "license": "MIT",
+  "keywords": ["editing", "anchors", "hashline", "mod"],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "disableEdit": {
+      "type": "boolean",
+      "title": "Disable Edit for text files",
+      "description": "Deny the built-in Edit tool for files the hashline tools can serve, so edits go through anchors. Edit still works on files hashline refuses.",
+      "default": true
+    }
+  }
+}
